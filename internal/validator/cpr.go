@@ -14,7 +14,9 @@ func ValidateCPR(cpr string) (bool, error) {
 	if idLen == 0 {
 		return false, errors.New("CPR is required")
 	}
-
+	if idLen != 9 {
+		return false, errors.New("CPR must be 9 characters long")
+	}
 	num := 0
 	// Loop through all characters except the last one
 	for i := 0; i < idLen-1; i++ {
