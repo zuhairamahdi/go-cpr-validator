@@ -17,8 +17,8 @@ type validateRequest struct {
 }
 
 type validateResponse struct {
-	Valid bool   `json:"valid"`
-	Error string `json:"error,omitempty"`
+	Valid  bool   `json:"valid"`
+	Reason string `json:"reason,omitempty"`
 }
 
 func main() {
@@ -69,5 +69,5 @@ func handleValidateCPR(w http.ResponseWriter, r *http.Request) {
 
 func writeError(w http.ResponseWriter, status int, message string) {
 	w.WriteHeader(status)
-	_ = json.NewEncoder(w).Encode(validateResponse{Valid: false, Error: message})
+	_ = json.NewEncoder(w).Encode(validateResponse{Valid: false, Reason: message})
 }
