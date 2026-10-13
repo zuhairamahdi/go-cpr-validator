@@ -22,6 +22,9 @@ func ValidateCPR(cpr string) (bool, error) {
 	for i := 0; i < idLen-1; i++ {
 		// Math.Abs(i - id.Count())
 		weight := int(math.Abs(float64(i - idLen)))
+		if cpr[i] < '0' || cpr[i] > '9' {
+			return false, errors.New("CPR must contain only digits")
+		}
 		asciiValue := int(cpr[i])
 		num += weight * asciiValue
 	}
